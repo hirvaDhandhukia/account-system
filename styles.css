@@ -9,6 +9,11 @@
 
 :root {
     --primary-color: #f8f9fa;
+    --dark-text: #212529;
+}
+
+.active {
+    font-weight: 600;
 }
 
 .container {
@@ -16,7 +21,7 @@
 }
 
 .link {
-    color: #212529;
+    color: var(--dark-text);
     box-sizing: border-box;
     box-decoration-break: none;
     text-decoration: none;
