@@ -5,22 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register | Techsevin</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <nav class="navigation container">
         <div class="nav-brand">
-            <a href="index.html" class="nav-brand link">TECHSEVIN</a>
+            <a href="#" class="nav-brand link">TECHSEVIN</a>
         </div>
         <ul class="list-non-bullet nav-pills">
             <li class="list-item-inline">
-                <a href="registration.php" class="link active">Registration</a>
+                <a href="#" class="link active">Registration</a>
             </li>
             <li class="list-item-inline">
-                <a href="#" class="link">Login</a>
+                <a href="login.php" class="link">Login</a>
             </li>
             <li class="list-item-inline">
-                <a href="#" class="link">Logout</a>
+                <a href="logout.php" class="link">Logout</a>
             </li>
         </ul>
     </nav>
@@ -32,11 +32,11 @@
     <form action="" method="post">
         <div class="form-div col-flex6">
             <label class="form-label">First Name</label>
-            <input type="text" name="fname" class="fname write" id="fname"placeholder="First Name">
+            <input type="text" name="fname" class="fname write" id="fname" placeholder="First Name">
         </div>
         <div class="form-div col-flex6">
             <label class="form-label">Last Name</label>
-            <input type="text" name="lname" class="lname write" id="lname"placeholder="Last Name">
+            <input type="text" name="lname" class="lname write" id="lname" placeholder="Last Name">
         </div>
         <div class="form-div col-flex12">
             <label class="form-label">Username</label>
@@ -71,7 +71,7 @@
         <div class="form-div col-flex12">
             <label class="form-label">Gender</label>
             <div class="form-div-gender">
-                <input type="radio" name="male" id="male"   class="radio-inp">
+                <input type="radio" name="male" id="male" class="radio-inp">
                 <label for="male">Male</label>
                 <input type="radio" name="female" id="female"   class="radio-inp">
                 <label for="female">Female</label>
@@ -79,6 +79,18 @@
                 <label for="other">Other</label>
             </div>
         </div>
+
+        
+        <div class="form-div col-flex6">
+            <label class="form-label">Password</label>
+            <input type="password" name="password" class="password write" id="password" placeholder="Password">
+        </div>
+        <div class="form-div col-flex6">
+            <label class="form-label">Confirm Password</label>
+            <input type="password" name="cpassword" class="cpassword write" id="cpassword" placeholder="Confirm Password">
+        </div>
+
+
         <div class="form-div col-flex12">
             <label for="box"><input type="checkbox" name="box" id="box"> Create my account</label>
         </div>
