@@ -27,7 +27,7 @@
 
 
     <!-- registration form -->
-    <form action="">
+    <form action="" method="post">
         <div class="form-div fname">
             <label class="form-label">First Name</label>
             <input type="text" name="fname" class="fname box" id="fname"placeholder="First Name">
@@ -39,10 +39,6 @@
         <div class="form-div username">
             <label class="form-label">Username</label>
             <input type="text" name="username" class="username" id="username" placeholder="Username">
-        </div>
-        <div class="form-div email">
-            <label class="form-label">Email</label>
-            <input type="email" name="email" class="email" id="email" placeholder="Email">
         </div>
         <div class="form-div email">
             <label class="form-label">Email</label>
@@ -65,7 +61,20 @@
         </div>
         <div class="form-div gender">
             <label class="form-label">Gender</label>
-            
+            <input type="radio" name="male" id="male">
+            <label for="male">Male</label>
+            <input type="radio" name="female" id="female">
+            <label for="female">Female</label>
+            <input type="radio" name="other" id="other">
+            <label for="other">Other</label>
+        </div>
+        <div class="date">
+            <label for="date">Birth Date</label>
+            <input type="date" name="date" id="date">
+        </div>
+        <div class="check-box">
+            <input type="checkbox" name="box" id="box">
+            <label for="box">Create my account</label>
         </div>
 
     </form>
