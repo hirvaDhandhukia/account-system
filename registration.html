@@ -27,30 +27,34 @@
 
 
     <!-- registration form -->
+    <div class="form-container">
+
     <form action="" method="post">
-        <div class="form-div fname">
+        <div class="form-div col-flex6">
             <label class="form-label">First Name</label>
-            <input type="text" name="fname" class="fname box" id="fname"placeholder="First Name">
+            <input type="text" name="fname" class="fname write" id="fname"placeholder="First Name">
         </div>
-        <div class="form-div lname">
+        <div class="form-div col-flex6">
             <label class="form-label">Last Name</label>
-            <input type="text" name="lname" class="lname" id="lname"placeholder="Last Name">
+            <input type="text" name="lname" class="lname write" id="lname"placeholder="Last Name">
         </div>
-        <div class="form-div username">
+        <div class="form-div col-flex12">
             <label class="form-label">Username</label>
-            <input type="text" name="username" class="username" id="username" placeholder="Username">
+            <input type="text" name="username" class="username write" id="username" placeholder="Username">
         </div>
-        <div class="form-div email">
+        <div class="form-div col-flex12">
             <label class="form-label">Email</label>
-            <input type="email" name="email" class="email" id="email" placeholder="name@example.com">
+            <input type="email" name="email" class="email write" id="email" placeholder="name@example.com">
         </div>
-        <div class="form-div address">
+
+        <div class="form-div col-flex12">
             <label class="form-label">Address</label>
-            <input type="text" name="address" class="address" id="address" placeholder="Address">
-        </div>
-        <div class="form-div address">
+            <input type="text" name="address" class="address write" id="address" placeholder="Address">
+        </div class="inline">
+
+        <div class="form-div col-flex6">
             <label class="form-label">City</label>
-            <select name="" id="">
+            <select name="city" id="city" class="write">
                 <option selected></option>
                 <option value="1">Ahmedabad</option>
                 <option value="2">Mumbai</option>
@@ -58,6 +62,10 @@
                 <option value="4">Bangalore</option>
                 <option value="4">Udaipur</option>
             </select>
+        </div>
+        <div class="form-div col-flex6">
+            <label class="form-label" for="date">Birth Date</label>
+            <input type="date" name="date" id="date" class="write">
         </div>
         <div class="form-div gender">
             <label class="form-label">Gender</label>
@@ -68,16 +76,14 @@
             <input type="radio" name="other" id="other">
             <label for="other">Other</label>
         </div>
-        <div class="date">
-            <label for="date">Birth Date</label>
-            <input type="date" name="date" id="date">
+        <div class="form-div col-flex12">
+            <label for="box"><input type="checkbox" name="box" id="box"> Create my account</label>
         </div>
-        <div class="check-box">
-            <input type="checkbox" name="box" id="box">
-            <label for="box">Create my account</label>
+        <div class="form-div">
+            <button type="submit" class="btn">Sign in</button>
         </div>
-
     </form>
+    </div>
 
 </body>
 </html>

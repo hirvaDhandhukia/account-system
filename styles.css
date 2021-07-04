@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-/* @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Expanded:wght@300&display=swap'); */
 
 * {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif; 
+    box-sizing: border-box;
 }
 
 :root {
@@ -18,6 +18,65 @@
 
 .container {
     padding: 0rem 1rem;
+}
+
+.col-flex6 {
+    flex: 0 0 auto;
+    width: 50%;
+}
+.col-flex12 {
+    flex: 0 0 auto;
+    width: 100%;
+}
+.col-flex4 {
+    flex: 0 0 auto;
+    width: 33.33333%;
+}
+.col-flex2 {
+    flex: 0 0 auto;
+    width: 16.666667%;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-container {
+    margin-left: auto;
+    margin-right: auto;
+    /* background-color: #f7bda2; */
+    /* text-align: center; */
+    min-width: 60%;
+    max-width: 720px;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: inline-block; /*inline block kia islie margin-bott work kr raha hai */
+    margin-bottom: .5rem;
+    box-sizing: border-box; /* not necessorily needed but rakha hai for rn*/
+}
+
+.form-div {
+    /* display: inline-block; */
+    padding: 0 8px 0 8px;
+    margin-top: 16px;
+}
+
+.write {
+    border-radius: .25rem; 
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem; /*iski vajah se placeholder mai space hai */
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5; /*height of this */
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box; /* not shure why is it used*/
+    border: 1px solid #ced4da;
 }
 
 .link {
