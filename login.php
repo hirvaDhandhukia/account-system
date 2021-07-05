@@ -28,7 +28,9 @@
 
     <!-- login form here -->
     <div class="form-container">
-    <h1>Login Here:</h1>
+    <h3 style="margin-bottom: 4px;">Login Here:</h3>
+    <hr size="0">
+
     <form action="" method="post">
         <div class="form-div col-flex12">
             <label class="form-label">Username</label>
