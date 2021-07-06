@@ -114,7 +114,6 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
         </div>
         <ul class="list-non-bullet nav-pills">
             <li class="list-item-inline">
-
                 <a href="#" class="link active">Registration</a>
             </li>
             <li class="list-item-inline">
