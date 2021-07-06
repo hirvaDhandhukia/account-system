@@ -23,31 +23,31 @@ $(document).ready(function() {
 
     $('#fname').focusout(function() {
         check_fname();
-    })
+    });
     $('#lname').focusout(function() {
         check_lname();
-    })
+    });
     $('#username').focusout(function() {
         check_username();
-    })
+    });
     $('#email').focusout(function() {
         check_email();
-    })
+    });
     $('#date').focusout(function() {
         check_date();
-    })
+    });
     $('#gender').focusout(function() {
         check_gender();
-    })
+    });
     $('#password').focusout(function() {
         check_password();
-    })
+    });
     $('#confirm_password').focusout(function() {
         check_confirm_password();
-    })
+    });
     $('#checkbox').focusout(function() {
         check_checkbox();
-    })
+    });
 
     // functions to validate the input values
     function check_fname() {
@@ -181,29 +181,29 @@ $(document).ready(function() {
         }
     }
 
-    $('#form').submit(function() {
-        error_fname = false;
-        error_lname = false;
-        error_username = false;
-        error_email = false;
-        error_password = false;
-        error_confirm_password = false;
+    // $('#form').submit(function() {
+    //     error_fname = false;
+    //     error_lname = false;
+    //     error_username = false;
+    //     error_email = false;
+    //     error_password = false;
+    //     error_confirm_password = false;
 
-            check_fname();
-            check_lname();
-            check_username();
-            check_email();
-            check_password();
-            check_confirm_password();
+    //         check_fname();
+    //         check_lname();
+    //         check_username();
+    //         check_email();
+    //         check_password();
+    //         check_confirm_password();
 
-            if (error_fname == false && error_lname == false && error_username && error_email == false && error_password == false && error_confirm_password == false) {
-                alert("Registration Successfull");
-                return true;
-            } else {
-                alert("Please Fill the form Correctly");
-                return false;
-            }
-    });
+    //         if (error_fname == false && error_lname == false && error_username && error_email == false && error_password == false && error_confirm_password == false) {
+    //             alert("Registration Successfull");
+    //             return true;
+    //         } else {
+    //             alert("Please Fill the form Correctly");
+    //             return false;
+    //         }
+    // });
 
 });
 

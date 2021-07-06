@@ -49,24 +49,23 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
     }
 
     //check for confirm_password field
-    if(empty(trim($_POST['confirm_password']))) {
-        $confirm_password_err = "Confirm the password";
-    } elseif(trim($_POST['confirm_password']) != trim($_POST['password'])) {
+    if(trim($_POST['confirm_password']) != trim($_POST['password'])) {
         $confirm_password_err = "Passwords should match";
-    } 
+    }
 
     //check for email
-    if(empty($_POST['email'])) {
-        $email_err = "Email cannot be blank";
-    } elseif(!filter_var($email, FILTER_VALIDATE_EMAIL) !== false) {
-        $email_err = "Invalid email format. Try using name@example.com format";
-    } else {
-        $email = trim($_POST['email']);
-    }
+    // if(empty(trim($_POST['email']))) {
+    //     $email_err = "Email cannot be blank";
+    // } elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    //     $email_err = "Invalid email format. Try using name@example.com format";
+    // } else {
+    //     $email = trim($_POST['email']);
+    // }
+    $email = trim($_POST['email']);
 
 
     // if there were no errors, insert the values into the database
-    if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err)) {
+    if(empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
         // generating a sql query
         $sql = "INSERT INTO user (username, password, email) VALUES (?, ?, ?)";
         
@@ -88,6 +87,9 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
             }
         }
         mysqli_stmt_close($stmt);
+    }
+    else {
+        echo "error occured";
     }
     mysqli_close($conn);
 
@@ -149,7 +151,7 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
         <div class="form-div col-flex12">
             <label class="form-label">Email</label>
             <input type="email" name="email" class="email write" id="email" placeholder="name@example.com">
-            <span id="email_err"></span>
+            <span id="email_err"><?php echo $email_err ?></span>
         </div>
         
         <div class="form-div col-flex12">
@@ -180,9 +182,9 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
             <div class="form-div-gender">
                 <input type="radio" name="gender" id="male" class="radio-inp">
                 <label for="male">Male</label>
-                <input type="radio" name="gender" id="female"   class="radio-inp">
+                <input type="radio" name="gender" id="female" class="radio-inp">
                 <label for="female">Female</label>
-                <input type="radio" name="gender" id="other"     class="radio-inp">
+                <input type="radio" name="gender" id="other" class="radio-inp">
                 <label for="other">Other</label>
             </div>
             <span id="gender_err"></span>
@@ -211,6 +213,7 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
     </form>
     </div>
 
-    <script src="app.js"></script>
+    <!-- <script src="jquery-3.6.0.min.js"></script> -->
+    <!-- <script type="text/javascript" src="app.js"></script> -->
 </body>
 </html>
