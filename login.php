@@ -1,10 +1,72 @@
+<?php
+
+//this script will handle login
+// yaha hame session ko start kr leana hai
+session_start();
+
+//check if the user is already loggedin
+if(isset($_SESSION['username'])) {
+    header("location: wecome.php");
+    exit;
+}
+
+require_once "config.php";
+
+$username = $password = "";
+$err = "";
+
+// jese hi form submit hota hai :-
+if($_SERVER['REQUEST_METHOD'] == "POST") {
+    if(empty(trim($_POST['username'])) || empty(trim($_POST['password']))) {
+        $err = "Please enter username + password";
+    } else {
+        $username = trim($_POST['username']);
+        $password = trim($_POST['password']);
+    }
+    
+if(empty($err)) {
+    $sql = "SELECT id, username, password FROM user WHERE username = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $param_username);
+
+    $param_username = $username;
+
+    //try to execute the statement
+    if(mysqli_stmt_execute($stmt)) {
+        mysqli_stmt_store_result($stmt);
+        // agar username exist krta hai too
+        if(mysqli_stmt_num_rows($stmt) == 1) {
+            mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+            // password verify karenge
+            if(mysqli_stmt_fetch($stmt)) {
+                if(password_verify($password, $hashed_password))
+                {
+                    // this means the password is correct, allow user to login
+                    session_start();
+                    $_SESSION["username"] = $username;
+                    $_SESSION["id"] = $id;
+                    $_SESSION["loggedin"] = true;
+
+                    // redirect user to welcome page
+                    header("location: welcome.php");
+                }
+            }
+        }
+    }
+}
+
+} 
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Techsevin</title>
+    <title>Login | Techsevin</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -39,6 +101,7 @@
         <div class="form-div col-flex12">
             <label class="form-label">Password</label>
             <input type="password" name="password" class="password write" id="password" placeholder="Password">
+            <span><?php echo $err ?></span>
         </div>
 
         <div class="form-div">

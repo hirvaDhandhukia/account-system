@@ -161,3 +161,11 @@ form {
     font-size: 1rem;
     border-radius: .25rem;
 }
+
+.img-icon {
+    width: 16px;
+    height: 16px;
+}
+.user {
+    padding-left: 6px;
+}
