@@ -67,11 +67,17 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
     // if there were no errors, insert the values into the database
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
         // generating a sql query
+        // creating an sql statement that we want to run into our database. 
+        // we use herre ? (prepared statement) so that we donot let any person commming to our website and destroying the database by adding sql statments in the user input fiels
         $sql = "INSERT INTO user (username, password, email) VALUES (?, ?, ?)";
-        
+        // here the ? is called a placeholder
+
+        // create a prepare statement here
         $stmt = mysqli_prepare($conn, $sql);
         // yaha pr statement prepare kii. 1st argument connection rahega and second argument sql hoga
         if($stmt) {
+            // now as there are no errors, we need to take the info that the user gave us and put that inside the database and run it with the $sql statement that we prepared above
+            // we are going to bind the parameters that user gave us with our prepared statement
             mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_password, $param_email);
 
             // ab ye parameters ko set karenge
@@ -80,6 +86,7 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
             $param_email = $email;
 
             // trying to execute the query
+            // we are executing the parameters with the prepared statement in our database here
             if(mysqli_stmt_execute($stmt)) {
                 header("location: login.php");
             } else {

@@ -39,6 +39,8 @@ if(empty($err)) {
             mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
             // password verify karenge
             if(mysqli_stmt_fetch($stmt)) {
+                // _verify function checks both the parameteres, password that user is inputting and $hashed_password is comming from the database. 
+                // so here we are confirming if both passwords are identical or not
                 if(password_verify($password, $hashed_password))
                 {
                     // this means the password is correct, allow user to login
@@ -49,8 +51,15 @@ if(empty($err)) {
 
                     // redirect user to welcome page
                     header("location: welcome.php");
+
+                    // in login system, we need to start a SESSION for the user if he/she is logged in successfully bec., the way that login systems work is that we create a global variable that has the info of the user when he signed in into the website. and we simply check, is the global variable available or not available. so the type of variable do we want to store globally is going to be what we call a SESSION VARIABLE. and to see a session variable, we need to start a session.
+                }
+                else {
+                    echo "Wrong password";
                 }
             }
+        } else {
+            echo "no user";
         }
     }
 }
