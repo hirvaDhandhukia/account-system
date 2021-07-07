@@ -108,6 +108,10 @@ if(empty($err)) {
             <button type="submit" class="btn">Login</button>
         </div>
 
+        <div class="form-div col-flex12">
+            <a href="reset-password.php">Forgot password?</a>
+        </div>
+
     </form>
     </div>
 
