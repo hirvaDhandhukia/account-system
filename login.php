@@ -89,9 +89,6 @@ if(empty($err)) {
                 <a href="registration.php" class="link">Registration</a>
             </li>
             <li class="list-item-inline">
-                <a href="login.php" class="link active">Login</a>
-            </li>
-            <li class="list-item-inline">
                 <a href="logout.php" class="link">Logout</a>
             </li>
         </ul>

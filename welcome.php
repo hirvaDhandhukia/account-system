@@ -1,10 +1,6 @@
 <?php
 
-session_start();
-
-if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!== true) {    
-    header("location: login.php");
-}
+session_start(); 
 
 ?>
 
@@ -23,20 +19,40 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!== true) {
             <a href="indexx.html" class="nav-brand link">TECHSEVIN</a>
         </div>
         <ul class="list-non-bullet nav-pills">
-            <li class="list-item-inline">
-                <a href="registration.php" class="link">Registration</a>
-            </li>
-            <li class="list-item-inline">
-                <a href="logout.php" class="link">Logout</a>
-            </li>
-            <li class="list-item-inline">
-            <a href="#" class="link user"><img class="img-icon" src="https://img.icons8.com/ios-glyphs/30/000000/user--v1.png"/><?php echo $_SESSION['username']?></a>
-            </li>
+            
+            <?php
+
+        if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!== true) { 
+            echo '<li class="list-item-inline">
+            <a href="registration.php" class="link">Registration</a>
+        </li>
+        <li class="list-item-inline">
+            <a href="login.php" class="link">Login</a>
+        </li>';
+        } else {
+            echo '<li class="list-item-inline">
+            <a href="logout.php" class="link">Logout</a>
+        </li>
+        <li class="list-item-inline">
+        <a href="#" class="link user"><img class="img-icon" src="https://img.icons8.com/ios-glyphs/30/000000/user--v1.png"/></a>
+        </li>';
+        }
+    ?>
         </ul>
     </nav>
 
     <div style="margin-top: 10px;">
-        <h1>Welcome <?php echo $_SESSION['username'] ?></h1>
+
+    <?php
+
+        if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!== true) { 
+            echo '<p>You are logged out! Press the Login button to login or Register button to register...</p>';
+        } else {
+            echo '<p>You are logged in successfully!</p>';
+            echo 'Welcome '. $_SESSION["username"];
+        }
+    ?>
+        
     </div>
 
 </body>
