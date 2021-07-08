@@ -21,7 +21,7 @@ if(isset($_POST['reset-request-submit'])) {
     $userEmail = $_POST["email"];
 
     // first thing we need to do is to delete the existing tokens from our database for a particular user. we don't want any user to have access to multiple tokens at the same time.
-    $sql = "DELETE FROM pwdReset WHERE pwdResetEmail=?";
+    $sql = "DELETE FROM pwdreset WHERE pwdResetEmail=?";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)) {
         // error msg
@@ -36,7 +36,7 @@ if(isset($_POST['reset-request-submit'])) {
 
 
     // now that any prior data of that user is deleted, we are going to insert the token inside our database
-    $sql = "INSERT INTO pwdReset (pwdResetEmail, pwdResetSelector, pwdResetToken, pwdResetExpires) VALUES (?, ?, ?, ?);";
+    $sql = "INSERT INTO pwdreset (pwdResetEmail, pwdResetSelector, pwdResetToken, pwdResetExpires) VALUES (?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)) {
         // error msg
