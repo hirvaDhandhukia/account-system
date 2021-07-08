@@ -1,69 +1,3 @@
-<?php
-
-    if (isset($_POST['reset-password-submit'])) {
-
-        $selector = $_POST["selector"];
-        $validator = $_POST["validator"];
-        $password = $_POST["password"];
-        $passwordRepeat = $_POST["confirm_password"];
-
-        // error handling
-        if(empty($password) || empty($passwordRepeat)) {
-            header("location: create-new-password.php?newpwd=empty");
-            exit();
-        } else if ($password != $passwordRepeat) {
-            header("location: create-new-password.php?newpwd=pwdnotsame");
-            exit();
-        }
-
-        $currentDate = date("U");
-
-        require "config.php";
-        $sql = "SELECT * FROM pwdReset WHERE pwdResetSelector=? AND pwdResetExpires >= ?";
-        $stmt = mysqli_stmt_init($conn);
-        if(!$mysqli_stmt_prepare($stmt, $sql)) {
-            echo "There was an error!";
-            exit();
-        } else {
-            mysqli_stmt_bind_param($stmt, "s", $selector);
-            mysqli_stmt_execute($stmt);
-
-            $result = mysqli_stmt_get_result($stmt);
-            if(!$row = mysqli_fetch_assoc($result)) {
-                echo "You need to re-submit your reset request";
-                exit();
-            } else {
-
-                $tokenBin = hex2bin($validator);
-                $tokenCheck = password_verify($tokenBin, $row["pwdResetToken"]);
-
-                if($tokenCheck === false) {
-                    echo "error";
-                    exit();
-                } elseif($tokenCheck === true) {
-
-                    $tokenEmail = $row['pwdResetEmail'];
-                    $sql = "SELECT * FROM user WHERE emailUsers=?;";
-                    if(!$mysqli_stmt_prepare($stmtm, $sql)) {
-                        echo "There was an error!";
-                        exit();
-                    } else {
-
-                        
-
-                    }
-
-                }
-            } 
-        }
-
-
-    } else {
-        header("location: welcome.php");
-    }
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,16 +32,21 @@
     <hr size="0">
 
     <?php
+    // before giving for the tokens, we need to check if the tokens are inside the url && after we reset the password, we again need to recheck for the tokens
+    // grabbing the tokens from the url 
         $selector = $_GET["selector"];
         $validator = $_GET["validator"];
 
         if(empty($selector) || empty($validator)) {
-            echo "we could not validate your request";
+            //error msg
+            // this all is just to make shure that nobody is messing with your tokens and url
+            echo "we could not validate your request, tokens are empty in the url";
         } else {
+            // here we check of the hexadecimal token is actually hexadecimal or not
             if(ctype_xdigit($selector) !== false && ctype_xdigit($validator) !== false ) {
-                ?>
+    ?>
 
-        <form action="" method="post">
+        <form action="reset-password.inc.php" method="post">
 
                 <input type="hidden" name="selector" value="<?php echo $selector ?>">
                 <input type="hidden" name="validator" value="<?php echo $validator ?>">
@@ -127,6 +66,8 @@
 
                 <?php
 
+            } else {
+                echo '<p>Hexadecimal tokens not found.</p>';
             }
         }
     ?>

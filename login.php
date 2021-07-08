@@ -114,6 +114,14 @@ if(empty($err)) {
             <button type="submit" class="btn">Login</button>
         </div>
 
+        <?php
+        if(isset($_GET["newpwd"])) {
+            if($_GET["newpwd"] == "passwordupdated") {
+                echo '<p> Your password has been reset!</p>';
+            }
+        }
+        ?>
+
         <div class="form-div col-flex12">
             <a href="reset-password.php">Forgot password?</a>
         </div>
