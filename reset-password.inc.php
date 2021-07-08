@@ -52,8 +52,8 @@
 
                     // we need to pinpoint which user inside the 'user' table wants to change the password of their account.
                     $tokenEmail = $row['pwdResetEmail'];
-                    $sql = "SELECT * FROM user WHERE email=?;";
-                    $stmt = mysqli_stmt_init($stmt, $sql);
+                    $sql = "SELECT * FROM user WHERE email=?";
+                    $stmt = mysqli_stmt_init($conn);
                     if(!mysqli_stmt_prepare($stmt, $sql)) {
                         echo "There was an error!";
                         exit();
@@ -69,7 +69,7 @@
 
                             //this sql statement below will update the new password to the database in 'user' table
                             $sql = "UPDATE user SET password=? WHERE email=?";
-                            $stmt = mysqli_stmt_init($stmt, $sql);
+                            $stmt = mysqli_stmt_init($conn);
                             if(!mysqli_stmt_prepare($stmt, $sql)) {
                                 echo "There was an error!";
                                 exit();
