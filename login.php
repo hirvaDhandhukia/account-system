@@ -49,6 +49,17 @@ if(empty($err)) {
                     $_SESSION["id"] = $id;
                     $_SESSION["loggedin"] = true;
 
+                    // profile photo: -
+                    $sql = "SELECT * FROM user WHERE username='$username'";
+                    $result = mysqli_query($conn, $sql);
+                    if(mysqli_num_rows($result) > 0) {
+                        while($row = mysqli_fetch_assoc($result)) {
+                            $userid = $row['id'];
+                            $sql = "INSERT INTO profileimg (userid, status) VALUES ($userid, 1)";
+                            mysqli_query($conn, $sql);
+                        }
+                    }
+
                     // redirect user to welcome page
                     header("location: welcome.php");
 
