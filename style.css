@@ -173,12 +173,12 @@ form {
 
 /* image sidepannel */
 .sidepanel {
+    height: 100%;
     width: 0;
     position: fixed;
     z-index: 1;
-    height: 250px;
     top: 0;
-    left: 0;
+    right: 0;
     background-color: #111;
     overflow-x: hidden;
     transition: 0.5s;
@@ -212,3 +212,15 @@ form {
 .openbtn:hover {
   background-color:#444;
 }
+
+/* profile image */
+.user-container img {
+    float: left;
+    width: 25rem;
+    height: auto;
+}
+
+.user-container div {
+    float: left;
+}
+
