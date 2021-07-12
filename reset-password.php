@@ -12,7 +12,7 @@
 
     <nav class="navigation container">
         <div class="nav-brand">
-            <a href="indexx.html" class="nav-brand link">TECHSEVIN</a>
+            <a href="#" class="nav-brand link">TECHSEVIN</a>
         </div>
         <ul class="list-non-bullet nav-pills">
             <li class="list-item-inline">

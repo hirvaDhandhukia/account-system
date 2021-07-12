@@ -101,14 +101,14 @@ require_once "config.php";
             echo '<p>You are logged in successfully!</p>';
             echo '<h1>Welcome '. $_SESSION["username"] .'</h1>';
             
-    $sql = "SELECT * FROM user";
+    $sql = "SELECT * FROM user;";
     $result = mysqli_query($conn, $sql);
     if(mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             // we want to get the id of user who is loggedin inside the user table
             // $row = mysqli_fetch_assoc($result);
             $id = $row['id'];
-            $sqlImg = "SELECT * FROM profileimg WHERE userid='$id'";
+            $sqlImg = "SELECT * FROM profileimg WHERE userid='$id';";
             $resultImg = mysqli_query($conn, $sqlImg);
             while ($rowImg = mysqli_fetch_assoc($resultImg)) {
                 // $rowImg = mysqli_fetch_assoc($resultImg);

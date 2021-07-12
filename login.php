@@ -25,7 +25,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     }
     
 if(empty($err)) {
-    $sql = "SELECT id, username, password FROM user WHERE username = ?";
+    $sql = "SELECT id, username, password FROM user WHERE username = ?;";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "s", $param_username);
 
@@ -50,7 +50,7 @@ if(empty($err)) {
                     $_SESSION["loggedin"] = true;
 
                     // profile photo: -
-                    $sql = "SELECT * FROM user WHERE username='$username'";
+                    $sql = "SELECT * FROM user WHERE username='$username';";
                     $result = mysqli_query($conn, $sql);
                     if(mysqli_num_rows($result) > 0) {
                         while($row = mysqli_fetch_assoc($result)) {

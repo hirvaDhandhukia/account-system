@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
     }
     else {
         // preparing a select statement
-        $sql = "SELECT id FROM user WHERE username = ?";
+        $sql = "SELECT id FROM user WHERE username = ?;";
         // ab mai mere variable ko bind karungi statement se
         $stmt = mysqli_prepare($conn, $sql);
         if($stmt) {
@@ -69,7 +69,7 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
         // generating a sql query
         // creating an sql statement that we want to run into our database. 
         // we use herre ? (prepared statement) so that we donot let any person commming to our website and destroying the database by adding sql statments in the user input fiels
-        $sql = "INSERT INTO user (username, password, email) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO user (username, password, email) VALUES (?, ?, ?);";
         // here the ? is called a placeholder
 
         // create a prepare statement here

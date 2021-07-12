@@ -24,7 +24,7 @@
 
         require "config.php";
         // we now want to select the token from our database
-        $sql = "SELECT * FROM pwdreset WHERE pwdResetSelector=? AND pwdResetExpires >= ?";
+        $sql = "SELECT * FROM pwdreset WHERE pwdResetSelector=? AND pwdResetExpires >= ?;";
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $sql)) {
             echo "There was an error!";
@@ -68,7 +68,7 @@
                         } else {
 
                             //this sql statement below will update the new password to the database in 'user' table
-                            $sql = "UPDATE user SET password=? WHERE email=?";
+                            $sql = "UPDATE user SET password=? WHERE email=?;";
                             $stmt = mysqli_stmt_init($conn);
                             if(!mysqli_stmt_prepare($stmt, $sql)) {
                                 echo "There was an error!";
@@ -82,7 +82,7 @@
 
                                 // now we will delete the token created
                                 // here ? is called a placeholder
-                                $sql = "DELETE FROM pwdReset WHERE pwdResetEmail=?";
+                                $sql = "DELETE FROM pwdReset WHERE pwdResetEmail=?;";
                                 $stmt = mysqli_stmt_init($conn);
                                 if(!mysqli_stmt_prepare($stmt, $sql)) {
                                     echo "There was an error while deleting";
