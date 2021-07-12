@@ -104,22 +104,23 @@ require_once "config.php";
     $sql = "SELECT * FROM user;";
     $result = mysqli_query($conn, $sql);
     if(mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
+        if ($row = mysqli_fetch_assoc($result)) {
             // we want to get the id of user who is loggedin inside the user table
-            // $row = mysqli_fetch_assoc($result);
+            $row = mysqli_fetch_assoc($result);
             $id = $row['id'];
             $sqlImg = "SELECT * FROM profileimg WHERE userid='$id';";
             $resultImg = mysqli_query($conn, $sqlImg);
-            while ($rowImg = mysqli_fetch_assoc($resultImg)) {
-                // $rowImg = mysqli_fetch_assoc($resultImg);
-                echo "<div>";
-                if($rowImg['status'] == 0) {
-                    echo "<img src='uploads/profile".$id.".jpg'>";
-                } else {
-                    echo "<img src='uploads/profiledefault.jpg'>";
-                }
-                echo $row['username'];
-                echo "</div>";
+            if ($rowImg = mysqli_fetch_assoc($resultImg)) {
+                    echo "<div>";
+                    if($rowImg['status'] == 0) {
+                        echo "<img src='uploads/profile".$id.".jpg'>";
+                        // echo "<img src='uploads/profiledefault.jpg'>";
+                    } else {
+                        echo "<img src='uploads/profiledefault.jpg'>";
+                        // echo "<img src='uploads/profile".$id.".jpg'>";
+                    }
+                    echo $row['username'];
+                    echo "</div>";
             }
         }
     }

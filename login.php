@@ -55,7 +55,7 @@ if(empty($err)) {
                     if(mysqli_num_rows($result) > 0) {
                         while($row = mysqli_fetch_assoc($result)) {
                             $userid = $row['id'];
-                            $sql = "INSERT INTO profileimg (userid, status) VALUES ($userid, 1)";
+                            $sql = "INSERT INTO profileimg (userid, status) VALUES ('$userid', 1)";
                             mysqli_query($conn, $sql);
                         }
                     }
@@ -128,7 +128,7 @@ if(empty($err)) {
         <?php
         if(isset($_GET["newpwd"])) {
             if($_GET["newpwd"] == "passwordupdated") {
-                echo '<p> Your password has been reset!</p>';
+                echo '<p>Your password has been reset!</p>';
             }
         }
         ?>

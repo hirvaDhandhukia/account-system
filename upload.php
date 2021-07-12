@@ -1,7 +1,10 @@
 <?php
 
-// this script will fetch the image or file from a form and then upload it
+session_start();
+include_once 'config.php';
+$id = $_SESSION['id'];
 
+// this script will fetch the image or file from a form and then upload it to my storage file
 if(isset($_POST['submitImg'])) {
 
     // in order to upload the file, we need to get info of the file
@@ -26,9 +29,13 @@ if(isset($_POST['submitImg'])) {
     if(in_array($fileActualExt, $allowed)) {
         if($fileError === 0) {
             if($fileSize < 1000000) {
-                $fileNameNew = uniqid('', true).".".$fileActualExt;
+                $fileNameNew = "profile".$id.".".$fileActualExt;
                 $fileDestination = 'uploads/'.$fileNameNew;
                 move_uploaded_file($fileTmpName, $fileDestination);
+
+                $sql = "UPDATE profileimg SET status=0 WHERE userid='$id';";
+                $result = mysqli_query($conn, $sql);
+
                 header("location: welcome.php?uploadsuccess");
             } else {
                 echo "your file is too big";
