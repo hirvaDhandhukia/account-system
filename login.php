@@ -45,7 +45,9 @@ if(empty($err)) {
                 if(password_verify($password, $hashed_password))
                 {
                     // this means the password is correct, allow user to login
+                    // a session ends automatically when you close your browser. so it is suitable to use a session for the login purpose
                     session_start();
+                    // now create session variables 
                     $_SESSION["username"] = $username;
                     $_SESSION["id"] = $id;
                     $_SESSION["loggedin"] = true;

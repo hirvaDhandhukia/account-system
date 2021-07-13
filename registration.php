@@ -11,6 +11,12 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
     }
     else {
         // preparing a select statement to check if the username already exists in the database
+        // step1: select the username from database using a select statement
+        // step2: prepare that statement and connect it to the $conn
+        // step3: now if preparing the statement is successful (i.e. there was no error in the sql statement) then bind the parameters that were marked ?(placeholders)
+        // step4: give the values of the params.
+        // step5: now that statement got it's ? wali values, you can execute the prepared statement.
+        // step6: store the result got after executing the sql statement and then return the $username values. 
         $sql = "SELECT id FROM user WHERE username = ? OR email = ?;";
         // ab mai mere variable ko bind karungi statement se
         $stmt = mysqli_prepare($conn, $sql);
