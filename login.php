@@ -18,18 +18,19 @@ $err = "";
 // jese hi form submit hota hai :-
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     if(empty(trim($_POST['username'])) || empty(trim($_POST['password']))) {
-        $err = "Please enter username + password";
+        $err = "Please enter username/email + password";
     } else {
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
     }
     
 if(empty($err)) {
-    $sql = "SELECT id, username, password FROM user WHERE username = ?;";
+    $sql = "SELECT id, username, password FROM user WHERE username = ? OR email = ?;";
     $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "s", $param_username);
+    mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_email);
 
     $param_username = $username;
+    $param_email = $username;
 
     //try to execute the statement
     if(mysqli_stmt_execute($stmt)) {

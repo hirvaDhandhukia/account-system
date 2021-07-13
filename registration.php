@@ -10,29 +10,33 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
         $username_err = "Username cannot be blank";
     }
     else {
-        // preparing a select statement
-        $sql = "SELECT id FROM user WHERE username = ?;";
+        // preparing a select statement to check if the username already exists in the database
+        $sql = "SELECT id FROM user WHERE username = ? OR email = ?;";
         // ab mai mere variable ko bind karungi statement se
         $stmt = mysqli_prepare($conn, $sql);
         if($stmt) {
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
+            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_email);
 
             // now jiske sath bind kia wo variable ko set krungi
-            // set the value of param_username
+            // set the value of param_username as the value that we have got from user in post method
             $param_username = trim($_POST['username']);
+            $param_email = trim($_POST['email']);
 
             //ab ham ye statement ko execute krne ka try karenge
+            // if statement sahi se execute ho gai then,,
             if(mysqli_stmt_execute($stmt)) {
                 mysqli_stmt_store_result($stmt); 
 
+                // mysqli_stmt_num_rows($stmt) == 1 checks if the value of inputed username already exists, then we will give an error
                 if(mysqli_stmt_num_rows($stmt) == 1) {
                     $username_err = "This username is already taken";
+                    $email_err = "This email is already taken";
                 } else {
                     $username = trim($_POST['username']);
                 }
             } 
             else {
-                echo "Something went wrong";
+                echo "Something went wrong. Problem with SQL statement";
             }
             mysqli_stmt_close($stmt);
         }
@@ -135,7 +139,7 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
 
     <!-- registration form -->
     <div class="form-container">
-        <h3 style="margin-bottom: 4px;">Register Here:</h3>
+        <h3 style="margin-bottom: 4px;">Sign In Here:</h3>
         <hr size="0">
 
     <form action="" method="post">
@@ -219,7 +223,7 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
     </form>
     </div>
 
-    <!-- <script src="jquery-3.6.0.min.js"></script> -->
-    <!-- <script type="text/javascript" src="app.js"></script> -->
+    <script src="jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
 </body>
 </html>
