@@ -92,6 +92,7 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
             // trying to execute the query
             // we are executing the parameters with the prepared statement in our database here
             if(mysqli_stmt_execute($stmt)) {
+                // echo "<script>alert('Signup successful!')</script>";
                 header("location: login.php");
             } else {
                 echo "Something went wrong... cannot redirect";
@@ -130,16 +131,13 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
             <li class="list-item-inline">
                 <a href="login.php" class="link">Login</a>
             </li>
-            <li class="list-item-inline">
-                <a href="logout.php" class="link">Logout</a>
-            </li>
         </ul>
     </nav>
 
 
     <!-- registration form -->
     <div class="form-container">
-        <h3 style="margin-bottom: 4px;">Sign In Here:</h3>
+        <h3 style="margin-bottom: 4px;">Sign Up Here:</h3>
         <hr size="0">
 
     <form action="" method="post">

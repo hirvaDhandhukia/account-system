@@ -40,7 +40,7 @@ if(empty($err)) {
             mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
             // password verify karenge
             if(mysqli_stmt_fetch($stmt)) {
-                // _verify function checks both the parameteres, password that user is inputting and $hashed_password is comming from the database. 
+                // _verify function checks both the parameteres, password that user is inputing and $hashed_password that is fetched from the database. 
                 // so here we are confirming if both passwords are identical or not
                 if(password_verify($password, $hashed_password))
                 {
@@ -71,7 +71,7 @@ if(empty($err)) {
                 }
             }
         } else {
-            echo "no user";
+            echo "no user/email named ". $username ." found in the database";
         }
     }
 }
@@ -100,9 +100,6 @@ if(empty($err)) {
             <li class="list-item-inline">
                 <a href="registration.php" class="link">Registration</a>
             </li>
-            <li class="list-item-inline">
-                <a href="logout.php" class="link">Logout</a>
-            </li>
         </ul>
     </nav>
 
@@ -113,7 +110,7 @@ if(empty($err)) {
 
     <form action="" method="post">
         <div class="form-div col-flex12">
-            <label class="form-label">Username</label>
+            <label class="form-label">Username/ E-mail</label>
             <input type="text" name="username" class="username write" id="username" placeholder="Username">
         </div>
         <div class="form-div col-flex12">
