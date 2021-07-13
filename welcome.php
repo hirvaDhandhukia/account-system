@@ -24,6 +24,7 @@ require_once "config.php";
             <?php
 
         if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!== true) { 
+            // i.e. user is not logged in (loggedin session is false)
             echo '<li class="list-item-inline">
                     <a href="registration.php" class="link">Registration</a>
                 </li>
@@ -31,9 +32,14 @@ require_once "config.php";
                     <a href="login.php" class="link">Login</a>
                 </li>';
         } else {
+            // user is logged in successfully
             echo '<li class="list-item-inline">
+                    <a href="profile.php" class="link">Profile Page</a>
+                </li>
+                <li class="list-item-inline">
                     <a href="logout.php" class="link">Logout</a>
                 </li>
+                
 
                 <li class="list-item-inline">
                     <div id="sidePanel" class="sidepanel">
@@ -58,6 +64,9 @@ require_once "config.php";
             echo '<p>You are logged in successfully!</p>';
             echo '<h1>Welcome '. $_SESSION["username"] .'</h1>';
             
+    
+    $id = $_SESSION['id'];
+    // $sql = "SELECT * FROM user WHERE id='$id';";
     $sql = "SELECT * FROM user;";
     $result = mysqli_query($conn, $sql);
     if(mysqli_num_rows($result) > 0) {
