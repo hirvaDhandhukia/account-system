@@ -63,7 +63,7 @@ if(empty($err)) {
                             // agar userid already exist kr raha ho to uska wo dikha do, new statement insert mat kro.
                             $sql = "INSERT INTO profileimg (userid, status) VALUES ('$userid', 1) WHERE NOT EXISTS (
                                 SELECT userid FROM profileimg WHERE userid='$userid'
-                            ) LIMIT 1";
+                            ) LIMIT 1;";
                             // ye insert statement tab hi chalegi jab WHERE NOT EXISTS wali statement verify hogi
                             mysqli_query($conn, $sql);
                         }

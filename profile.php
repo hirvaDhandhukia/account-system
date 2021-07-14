@@ -11,10 +11,11 @@ require_once "config.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UserAccount | Techsevin</title>
-    <link rel="stylesheet" href="style.css"/>
+    <title>User Profile | Techsevin</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <nav class="navigation container">
         <div class="nav-brand">
             <a href="#" class="nav-brand link">TECHSEVIN</a>
@@ -32,18 +33,7 @@ require_once "config.php";
         } else {
             // user is logged in successfully
             echo '<li class="list-item-inline">
-                    <a href="profile.php" class="link">Profile Page</a>
-                </li>
-                <li class="list-item-inline">
                     <a href="logout.php" class="link">Logout</a>
-                </li>
-                
-                <li class="list-item-inline">
-                    <div id="sidePanel" class="sidepanel">
-                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-                        <a href="#">image</a>
-                    </div> 
-                    <button class="openbtn" onclick="openNav()"><img class="img-icon" src="https://img.icons8.com/ios-glyphs/30/000000/user--v1.png"/></button>
                 </li>';
         }
         ?>
@@ -55,8 +45,9 @@ require_once "config.php";
     if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!== true) { 
         echo '<p>You are logged out! Press the Login button to login or Registerbutton to register...</p>';
     } else {
-        echo '<h1>Welcome, '. $_SESSION["username"] .'</h1>';
-            
+        echo '<h1>This is your profile page, '. $_SESSION["username"] .'</h1>';
+    
+    // profile image 
     $username = $_SESSION["username"];
     $sql = "SELECT * FROM user WHERE username='$username';";
     $result = mysqli_query($conn, $sql);
@@ -73,28 +64,30 @@ require_once "config.php";
                 } else {
                     echo "<img src='uploads/profiledefault.jpg'>";
                 }
-                echo $row['username'];
+                echo $row['username'].'<br>';
                 echo "</div>";
             }
         }
     }
-    echo "<form action='upload.php' method='post' enctype='multipart/form-data'>
-    <input type = 'file' name='file'>
-    <button type='submit' name='submitImg'>UPLOAD</button>
-    </form>";
+
+    // username
+    echo 'Username: '. $username .'<br>';
+
+    // email
+    $sqlEmail = "SELECT * FROM user WHERE username='$username';";
+    $resultEmail = mysqli_query($conn, $sqlEmail);
+    if(mysqli_num_rows($resultEmail)>0) {
+        $rowEmail = mysqli_fetch_assoc($resultEmail);
+        echo 'Email: '.$rowEmail['email'].'<br>';
+    } else {
+        echo "Row not found";
+    }
     }
     ?>  
     </div>
 
 
-    <script>
-        function openNav() {
-            document.getElementById("sidePanel").style.width = "250px";
-        }
 
-        function closeNav() {
-            document.getElementById("sidePanel").style.width = "0";
-        }
-    </script>
+
 </body>
 </html>
