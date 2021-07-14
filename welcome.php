@@ -64,27 +64,24 @@ require_once "config.php";
             echo '<p>You are logged in successfully!</p>';
             echo '<h1>Welcome '. $_SESSION["username"] .'</h1>';
             
-    
-    $id = $_SESSION['id'];
-    // $sql = "SELECT * FROM user WHERE id='$id';";
-    $sql = "SELECT * FROM user;";
+    $username = $_SESSION["username"];
+    $sql = "SELECT * FROM user WHERE username='$username'";
     $result = mysqli_query($conn, $sql);
     if(mysqli_num_rows($result) > 0) {
-        if ($row = mysqli_fetch_assoc($result)) {
-            // we want to get the id of user who is loggedin inside the user table
-            $row = mysqli_fetch_assoc($result);
+        while($row = mysqli_fetch_assoc($result)) {
+            // we want to get the id of user who is loggedin inside the user table. $id ke andar user-table ke id ki info store karwa di. 
             $id = $row['id'];
-            $sqlImg = "SELECT * FROM profileimg WHERE userid='$id';";
+            $sqlImg = "SELECT * FROM profileimg WHERE userid='$id'";
             $resultImg = mysqli_query($conn, $sqlImg);
-            if ($rowImg = mysqli_fetch_assoc($resultImg)) {
-                    echo "<div class='user-container'>";
-                    if($rowImg['status'] == 0) {
-                        echo "<img src='uploads/profile".$id.".jpg'>";
-                    } else {
-                        echo "<img src='uploads/profiledefault.jpg'>";
-                    }
-                    echo $row['username'];
-                    echo "</div>";
+            while($rowImg = mysqli_fetch_assoc($resultImg)) {
+                echo "<div class='user-container'>";
+                if($rowImg['status'] == 0) {
+                    echo "<img src='uploads/profile".$id.".jpg'>";
+                } else {
+                    echo "<img src='uploads/profiledefault.jpg'>";
+                }
+                echo $row['username'];
+                echo "</div>";
             }
         }
     }

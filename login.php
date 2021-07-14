@@ -53,12 +53,18 @@ if(empty($err)) {
                     $_SESSION["loggedin"] = true;
 
                     // profile photo: -
+                    // if info of userid already exists, then don't add it again
                     $sql = "SELECT * FROM user WHERE username='$username';";
                     $result = mysqli_query($conn, $sql);
                     if(mysqli_num_rows($result) > 0) {
                         while($row = mysqli_fetch_assoc($result)) {
                             $userid = $row['id'];
-                            $sql = "INSERT INTO profileimg (userid, status) VALUES ('$userid', 1)";
+                            // checking if info already exists or not
+                            // agar userid already exist kr raha ho to uska wo dikha do, new statement insert mat kro.
+                            $sql = "INSERT INTO profileimg (userid, status) VALUES ('$userid', 1) WHERE NOT EXISTS (
+                                SELECT userid FROM profileimg WHERE userid='$userid'
+                            ) LIMIT 1";
+                            // ye insert statement tab hi chalegi jab WHERE NOT EXISTS wali statement verify hogi
                             mysqli_query($conn, $sql);
                         }
                     }
