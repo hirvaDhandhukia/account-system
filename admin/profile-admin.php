@@ -11,10 +11,11 @@ require_once "../users/includes/config.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UserAccount | Techsevin</title>
-    <link rel="stylesheet" href="..\styles\style.css"/>
+    <title>User Profile | Techsevin</title>
+    <link rel="stylesheet" href="..\styles\style.css">
 </head>
 <body>
+
 <nav class="navigation container">
         <div class="nav-brand">
             <a href="#" class="nav-brand link">TECHSEVIN ADMIN</a>
@@ -32,9 +33,6 @@ require_once "../users/includes/config.php";
         } else {
             // user is logged in successfully
             echo '<li class="list-item-inline">
-                    <a href="profile-admin.php" class="link">Profile Page</a>
-                </li>
-                <li class="list-item-inline">
                     <a href="logout-admin.php" class="link">Logout</a>
                 </li>';
         }
@@ -45,11 +43,11 @@ require_once "../users/includes/config.php";
     <div style="margin-top: 10px;">
     <?php
     if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!== true) { 
-        echo '<p>You are logged out! Press the Login button to login or Signup button to signup...</p>';
+        echo '<p>You are logged out! Press the Login button to login or Registerbutton to register...</p>';
     } else {
-        echo '<p>You are logged in successfully!</p>';
-        echo '<h1>Welcome, '. $_SESSION["username"] .'</h1>';
-            
+        echo '<h1>This is your profile page, '. $_SESSION["username"] .'</h1>';
+    
+    // profile image 
     $username = $_SESSION["username"];
     $sql = "SELECT * FROM admin WHERE username='$username';";
     $result = mysqli_query($conn, $sql);
@@ -66,29 +64,30 @@ require_once "../users/includes/config.php";
                 } else {
                     echo "<img src='../uploads/profiledefault.jpg'>";
                 }
-                echo $row['username'];
+                echo $row['username'].'<br>';
                 echo "</div>";
             }
         }
-    } else {
-        echo "Error!.";
     }
-    // form for uploading the profile image
-    echo "<form action='includes/upload.inc.php' method='post' enctype='multipart/form-data'>
-    <input type = 'file' name='file'>
-    <button type='submit' name='submitImg'>UPLOAD</button>
-    </form>";
+
+    // username
+    echo 'Username: '. $username .'<br>';
+
+    // email
+    $sqlEmail = "SELECT * FROM admin WHERE username='$username';";
+    $resultEmail = mysqli_query($conn, $sqlEmail);
+    if(mysqli_num_rows($resultEmail)>0) {
+        $rowEmail = mysqli_fetch_assoc($resultEmail);
+        echo 'Email: '.$rowEmail['email'].'<br>';
+    } else {
+        echo "Row not found";
+    }
     }
     ?>  
     </div>
 
-    <?php
-        if(isset($_GET["upload"])) {
-            if($_GET["upload"] == "success") {
-                echo '<p>Your profile image has been uploaded!</p>';
-            }
-        }
-    ?> 
+
+
 
 </body>
 </html>

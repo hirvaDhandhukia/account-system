@@ -60,9 +60,9 @@ require_once "includes/config.php";
             while($rowImg = mysqli_fetch_assoc($resultImg)) {
                 echo "<div class='user-container'>";
                 if($rowImg['status'] == 0) {
-                    echo "<img src='uploads/profile".$id.".jpg'>";
+                    echo "<img src='../uploads/users/profile".$id.".jpg'>";
                 } else {
-                    echo "<img src='uploads/profiledefault.jpg'>";
+                    echo "<img src='../uploads/profiledefault.jpg'>";
                 }
                 echo $row['username'].'<br>';
                 echo "</div>";
