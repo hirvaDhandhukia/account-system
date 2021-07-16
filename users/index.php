@@ -55,6 +55,7 @@ require_once "includes/config.php";
     if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!== true) { 
         echo '<p>You are logged out! Press the Login button to login or Signup button to register...</p>';
     } else {
+        echo '<p>You are logged in successfully!</p>';
         echo '<h1>Welcome, '. $_SESSION["username"] .'</h1>';
             
     $username = $_SESSION["username"];
@@ -77,9 +78,11 @@ require_once "includes/config.php";
                 echo "</div>";
             }
         }
+    } else {
+        echo "Error!.";
     }
     // form for uploading the profile image
-    echo "<form action='upload.php' method='post' enctype='multipart/form-data'>
+    echo "<form action='includes/upload.inc.php' method='post' enctype='multipart/form-data'>
     <input type = 'file' name='file'>
     <button type='submit' name='submitImg'>UPLOAD</button>
     </form>";
@@ -87,6 +90,13 @@ require_once "includes/config.php";
     ?>  
     </div>
 
+    <?php
+        if(isset($_GET["upload"])) {
+            if($_GET["upload"] == "success") {
+                echo '<p>Your profile image has been uploaded!</p>';
+            }
+        }
+    ?> 
 
     <script>
         function openNav() {
