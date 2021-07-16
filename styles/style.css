@@ -202,6 +202,7 @@ form {
   font-size: 36px;
 }
 .openbtn {
+  width: 16px 16px;
   font-size: 20px;
   cursor: pointer;
   background-color: rgb(214, 214, 214);

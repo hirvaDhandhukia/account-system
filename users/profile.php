@@ -1,7 +1,7 @@
 <?php
 
 session_start(); 
-require_once "config.php";
+require_once "includes/config.php";
 
 ?>
 
@@ -12,7 +12,7 @@ require_once "config.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile | Techsevin</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="..\styles\style.css">
 </head>
 <body>
 
@@ -25,7 +25,7 @@ require_once "config.php";
         if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!== true) { 
             // i.e. user is not logged in (loggedin session is false)
             echo '<li class="list-item-inline">
-                    <a href="registration.php" class="link">Registration</a>
+                    <a href="registration.php" class="link">Signup</a>
                 </li>
                 <li class="list-item-inline">
                     <a href="login.php" class="link">Login</a>
@@ -33,7 +33,7 @@ require_once "config.php";
         } else {
             // user is logged in successfully
             echo '<li class="list-item-inline">
-                    <a href="logout.php" class="link">Logout</a>
+                    <a href="includes/logout.inc.php" class="link">Logout</a>
                 </li>';
         }
         ?>

@@ -6,11 +6,11 @@ session_start();
 
 //check if the user is already loggedin
 if(isset($_SESSION['username'])) {
-    header("location: wecome.php");
+    header("location: index.php");
     exit;
 }
 
-require_once "config.php";
+require_once "includes/config.php";
 
 $username = $password = "";
 $err = "";
@@ -18,7 +18,7 @@ $err = "";
 // jese hi form submit hota hai :-
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     if(empty(trim($_POST['username'])) || empty(trim($_POST['password']))) {
-        $err = "Please enter username/email + password";
+        $err = "Please enter username/email + password correctly";
     } else {
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
@@ -69,8 +69,8 @@ if(empty($err)) {
                         }
                     }
 
-                    // redirect user to welcome page
-                    header("location: welcome.php");
+                    // redirect user to home page
+                    header("location: index.php");
 
                     // in login system, we need to start a SESSION for the user if he/she is logged in successfully bec., the way that login systems work is that we create a global variable that has the info of the user when he signed in into the website. and we simply check, is the global variable available or not available. so the type of variable do we want to store globally is going to be what we call a SESSION VARIABLE. and to see a session variable, we need to start a session.
                 }
@@ -96,17 +96,17 @@ if(empty($err)) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Techsevin</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="..\styles\style.css">
 </head>
 <body>
 
     <nav class="navigation container">
         <div class="nav-brand">
-            <a href="indexx.html" class="nav-brand link">TECHSEVIN</a>
+            <a href="#" class="nav-brand link">TECHSEVIN</a>
         </div>
         <ul class="list-non-bullet nav-pills">
             <li class="list-item-inline">
-                <a href="registration.php" class="link">Registration</a>
+                <a href="registration.php" class="link">Signup</a>
             </li>
         </ul>
     </nav>

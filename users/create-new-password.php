@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Send-reset-passmail | Techsevin</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="..\styles\style.css">
 </head>
 <body>
 
@@ -21,7 +21,7 @@
                 <a href="login.php" class="link active">Login</a>
             </li>
             <li class="list-item-inline">
-                <a href="logout.php" class="link">Logout</a>
+                <a href="includes/logout.inc.php" class="link">Logout</a>
             </li>
         </ul>
     </nav>
@@ -42,11 +42,11 @@
             // this all is just to make shure that nobody is messing with your tokens and url
             echo "we could not validate your request, tokens are empty in the url";
         } else {
-            // here we check of the hexadecimal token is actually hexadecimal or not
+            // here we check of the hexadecimal token is actually hexadecimal or not with an inbuilt function of php
             if(ctype_xdigit($selector) !== false && ctype_xdigit($validator) !== false ) {
     ?>
 
-        <form action="reset-password.inc.php" method="post">
+        <form action="includes/reset-password.inc.php" method="post">
 
                 <input type="hidden" name="selector" value="<?php echo $selector ?>">
                 <input type="hidden" name="validator" value="<?php echo $validator ?>">
@@ -64,12 +64,11 @@
         </div>
     </form>
 
-                <?php
-
-            } else {
-                echo '<p>Hexadecimal tokens not found.</p>';
-            }
+    <?php
+        } else {
+            echo '<p>Hexadecimal tokens not found.</p>';
         }
+    }
     ?>
 
     <?php

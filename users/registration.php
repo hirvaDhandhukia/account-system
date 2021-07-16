@@ -1,6 +1,6 @@
 <?php
 
-require_once "config.php";
+require_once "includes/config.php";
 $username = $password = $confirm_password = $email = "";
 $username_err = $password_err = $confirm_password_err = $email_err = "";
 
@@ -123,7 +123,7 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register | Techsevin</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="..\styles\style.css">
 </head>
 <body>
 <nav class="navigation container">
@@ -132,7 +132,7 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
         </div>
         <ul class="list-non-bullet nav-pills">
             <li class="list-item-inline">
-                <a href="registration.php" class="link active">Register</a>
+                <a href="registration.php" class="link active">Signup</a>
             </li>
             <li class="list-item-inline">
                 <a href="login.php" class="link">Login</a>
@@ -227,7 +227,7 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
     </form>
     </div>
 
-    <script src="jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="app.js"></script>
+    <script src="..\js\jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="..\js\app.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include_once 'config.php';
+include_once 'includes/config.php';
 $id = $_SESSION['id'];
 
 // this script will fetch the image or file from a form and then upload it to my storage file
@@ -36,7 +36,7 @@ if(isset($_POST['submitImg'])) {
                 $sql = "UPDATE profileimg SET status=0 WHERE userid='$id';";
                 $result = mysqli_query($conn, $sql);
 
-                header("location: welcome.php?uploadsuccess");
+                header("location: index.php?uploadsuccess");
             } else {
                 echo "your file is too big";
             }

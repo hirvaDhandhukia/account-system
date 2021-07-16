@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Send-reset-passmail | Techsevin</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="..\styles\style.css">
 </head>
 <body>
 
@@ -16,13 +16,10 @@
         </div>
         <ul class="list-non-bullet nav-pills">
             <li class="list-item-inline">
-                <a href="registration.php" class="link">Registration</a>
+                <a href="registration.php" class="link">Signup</a>
             </li>
             <li class="list-item-inline">
-                <a href="login.php" class="link active">Login</a>
-            </li>
-            <li class="list-item-inline">
-                <a href="logout.php" class="link">Logout</a>
+                <a href="login.php" class="link">Login</a>
             </li>
         </ul>
     </nav>
@@ -32,7 +29,7 @@
     <h3 style="margin-bottom: 4px;">Reset your password:</h3>
     <hr size="0">
 
-    <form action="reset-request.inc.php" method="post">
+    <form action="includes\reset-request.inc.php" method="post">
         <div class="form-div col-flex12">
             <label class="form-label">Email</label>
             <input type="email" name="email" class="email write" id="email" placeholder="Enter your email address">

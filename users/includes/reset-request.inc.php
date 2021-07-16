@@ -11,7 +11,7 @@ if(isset($_POST['reset-request-submit'])) {
     //$token authenticates if the user is correct or not
 
     // we here now, create the link that we are going to send to the user in e-mail
-    $url = "www.localhost/account-system/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
+    $url = "www.localhost/account-system/users/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
     // we can grab these selector= and validator= afterwords using get method
 
     // now we are gonna create an expiary date for our token, we don't want the link to work for infinite time.
@@ -65,11 +65,11 @@ if(isset($_POST['reset-request-submit'])) {
 
     mail($to, $subject, $message, $headers);
 
-    header("location: reset-password.php?reset=success");
+    header("location: ../reset-password.php?reset=success");
 
 } else {
     echo "error happened";
-    // header("location: welcome.php");
+    // header("location: ../index.php");
 }
 
 

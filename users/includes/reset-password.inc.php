@@ -10,11 +10,11 @@
 
         // error handling
         if(empty($password) || empty($passwordRepeat)) {
-            header("location: create-new-password.php?newpwd=empty&selector=" . $selector . "&validator=" . $validator);
+            header("location: ..\create-new-password.php?newpwd=empty&selector=" . $selector . "&validator=" . $validator);
             echo "empty passwords not allowed";
             exit();
         } else if ($password !== $passwordRepeat) {
-            header("location: create-new-password.php?newpwd=pwdnotsame&selector=" . $selector . "&validator=" . $validator);
+            header("location: ..\create-new-password.php?newpwd=pwdnotsame&selector=" . $selector . "&validator=" . $validator);
             echo "both passwords don't match. write same passwords";
             exit();
         }
@@ -52,7 +52,7 @@
 
                     // we need to pinpoint which user inside the 'user' table wants to change the password of their account.
                     $tokenEmail = $row['pwdResetEmail'];
-                    $sql = "SELECT * FROM user WHERE email=?";
+                    $sql = "SELECT * FROM user WHERE email=?;";
                     $stmt = mysqli_stmt_init($conn);
                     if(!mysqli_stmt_prepare($stmt, $sql)) {
                         echo "There was an error!";
@@ -90,7 +90,7 @@
                                 } else {
                                     mysqli_stmt_bind_param($stmt, "s", $tokenEmail);
                                     mysqli_stmt_execute($stmt);
-                                    header("location: login.php?newpwd=passwordupdated");
+                                    header("location: ..\login.php?newpwd=passwordupdated");
                                 }
 
                             }
@@ -105,7 +105,7 @@
 
     } else {
         echo "error happened redirecting!";
-        // header("location: welcome.php");
+        // header("location: ..\index.php");
     }
 
 ?>

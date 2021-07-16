@@ -1,7 +1,7 @@
 <?php
 
 session_start(); 
-require_once "config.php";
+require_once "includes/config.php";
 
 ?>
 
@@ -12,7 +12,7 @@ require_once "config.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UserAccount | Techsevin</title>
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="..\styles\style.css"/>
 </head>
 <body>
 <nav class="navigation container">
@@ -24,7 +24,7 @@ require_once "config.php";
         if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!== true) { 
             // i.e. user is not logged in (loggedin session is false)
             echo '<li class="list-item-inline">
-                    <a href="registration.php" class="link">Registration</a>
+                    <a href="registration.php" class="link">Signup</a>
                 </li>
                 <li class="list-item-inline">
                     <a href="login.php" class="link">Login</a>
@@ -35,7 +35,7 @@ require_once "config.php";
                     <a href="profile.php" class="link">Profile Page</a>
                 </li>
                 <li class="list-item-inline">
-                    <a href="logout.php" class="link">Logout</a>
+                    <a href="includes/logout.inc.php" class="link">Logout</a>
                 </li>
                 
                 <li class="list-item-inline">
@@ -43,7 +43,7 @@ require_once "config.php";
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                         <a href="#">image</a>
                     </div> 
-                    <button class="openbtn" onclick="openNav()"><img class="img-icon" src="https://img.icons8.com/ios-glyphs/30/000000/user--v1.png"/></button>
+                    <button class="openbtn" onclick="openNav()"><img class="img-icon" src="uploads/profiledefault.jpg"/></button>
                 </li>';
         }
         ?>
@@ -53,7 +53,7 @@ require_once "config.php";
     <div style="margin-top: 10px;">
     <?php
     if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!== true) { 
-        echo '<p>You are logged out! Press the Login button to login or Registerbutton to register...</p>';
+        echo '<p>You are logged out! Press the Login button to login or Signup button to register...</p>';
     } else {
         echo '<h1>Welcome, '. $_SESSION["username"] .'</h1>';
             
@@ -78,6 +78,7 @@ require_once "config.php";
             }
         }
     }
+    // form for uploading the profile image
     echo "<form action='upload.php' method='post' enctype='multipart/form-data'>
     <input type = 'file' name='file'>
     <button type='submit' name='submitImg'>UPLOAD</button>
