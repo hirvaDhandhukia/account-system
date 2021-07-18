@@ -230,7 +230,7 @@ form {
   border-spacing: 0;
   width: 100%;
   border: 1px solid #ddd;
-  border-collapse: 1px solid black;
+  border-collapse: collapse;
 }
 
 .table-userinfo tr:nth-child(even) {
