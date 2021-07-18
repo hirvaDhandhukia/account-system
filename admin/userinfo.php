@@ -58,6 +58,7 @@ require_once "../users/includes/config.php";
             <th>Username</th>
             <th>E-mail</th>
             <th>Profile-Img</th>
+            <th>Edit</th>
         </thead>
         <tbody>
 
@@ -98,13 +99,13 @@ require_once "../users/includes/config.php";
                             }
                         }
                     } ?></td>
+                    <td><?php echo "<a href='edit-userinfo.php?username=$row[username]&email=$row[email]'>Edit</a>" ?></td>
                 </tr>
         <?php
         }
     }
 }
     ?>
-
         </tbody>
     </table>
 </div>
