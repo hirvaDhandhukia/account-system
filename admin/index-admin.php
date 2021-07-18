@@ -31,7 +31,10 @@ require_once "../users/includes/config.php";
                 </li>';
         } else {
             // user is logged in successfully
-            echo '<li class="list-item-inline">
+            echo ' <li class="list-item-inline">
+                    <a href="userinfo.php" class="link">User-Info</a>
+                </li>
+                <li class="list-item-inline">
                     <a href="profile-admin.php" class="link">Profile Page</a>
                 </li>
                 <li class="list-item-inline">
