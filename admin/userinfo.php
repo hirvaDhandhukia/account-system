@@ -45,7 +45,24 @@ require_once "../users/includes/config.php";
     <h1>All User's Information will be shown here:</h1>
 
     <?php
-        $sql = "SELECT * FROM user;";
+        if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!== true) {
+            echo "You are not logged in! Please, login and try again later";
+        } 
+        else {
+    ?>
+
+    <div class="table-userinfo">
+    <table>
+        <thead>
+            <th>Id</th>
+            <th>Username</th>
+            <th>E-mail</th>
+            <th>Profile-Img</th>
+        </thead>
+        <tbody>
+
+        <?php
+       $sql = "SELECT * FROM user;";
 
         // querying the sql stetement here
         $result = mysqli_query($conn, $sql);
@@ -54,14 +71,43 @@ require_once "../users/includes/config.php";
         $resultCheck = mysqli_num_rows($result);
         if($resultCheck > 0) {
             while($row = mysqli_fetch_assoc($result)) {
-                // echo $row['id'] . "<br>";
-                // echo $row['username'] . "<br>";
-                // echo $row['email'] . "<br>";
-                // echo $row['created_at'] . "<br>";
-                print_r($row);
-            }
+                // print_r($row);
+        ?>
+                <tr>
+                    <td><?php echo $row['id'] . "<br>"; ?></td>
+                    <td><?php echo $row['username'] . "<br>"; ?></td>
+                    <td><?php echo $row['email'] . "<br>"; ?></td>
+                    <td><?php 
+                    $username = $row['username'];
+                    $sqlImg = "SELECT * FROM user WHERE username='$username';";
+                    $resultImg = mysqli_query($conn, $sqlImg);
+                    if(mysqli_num_rows($resultImg) > 0) {
+                        while($rowImg = mysqli_fetch_assoc($resultImg)) {
+                            // we want to get the id of user who is loggedin inside the user table. $id ke andar    user-table ke id ki info store karwa di. 
+                            $id = $rowImg['id'];
+                            $sqlImgg = "SELECT * FROM profileimg WHERE userid='$id';";
+                            $resultImgg = mysqli_query($conn, $sqlImgg);
+                            while($rowImgg = mysqli_fetch_assoc($resultImgg)) {
+                                echo "<div class='user-container'>";
+                                if($rowImgg['status'] == 0) {
+                                    echo "<img src='../uploads/users/profile".$id.".jpg'>";
+                                } else {
+                                    echo "<img src='../uploads/profiledefault.jpg'>";
+                                }
+                                echo "</div>";
+                            }
+                        }
+                    } ?></td>
+                </tr>
+        <?php
         }
+    }
+}
     ?>
+
+        </tbody>
+    </table>
+</div>
 
 </body>
 </html>

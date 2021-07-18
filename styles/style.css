@@ -225,3 +225,14 @@ form {
     float: left;
 }
 
+.table-userinfo {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-collapse: 1px solid black;
+}
+
+.table-userinfo tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
